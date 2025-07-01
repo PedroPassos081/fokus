@@ -6,6 +6,17 @@ export default function Index() {
       <Image source={require("../assets/images/foco.png")} />
 
       <View style={styles.actions}>
+        <View style={styles.contex}>
+          <Pressable style={styles.contexButtonActive}>
+            <Text style={styles.contexButtonText}>foco</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.contexButtonText}>Pausa curta</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={styles.contexButtonText}>Pausa longa</Text>
+          </Pressable>
+        </View>
         <Text style={styles.timer}>25:00</Text>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Começar</Text>
@@ -60,5 +71,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#98A0AB",
     fontSize: 12.5,
+  },
+  contex: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  contexButtonActive: { backgroundColor: "#144480", borderRadius: 8 },
+  contexButtonText: {
+    fontSize: 12.5,
+    color: "#fff",
+    padding: 8,
   },
 });
