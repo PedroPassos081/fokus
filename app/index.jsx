@@ -1,9 +1,30 @@
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
+const pomodoro = [
+  {
+    id: "focus",
+    initialValue: 25,
+    Image: require("../assets/images/foco.png"),
+  },
+  {
+    id: "short",
+    initialValue: 5,
+    Image: require("../assets/images/short.png"),
+  },
+  {
+    id: "long",
+    initialValue: 15,
+    Image: require("../assets/images/long.png"),
+  },
+];
+
 export default function Index() {
+  const [timerType, setTimerType] = useState(pomodoro[0]);
+
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/images/foco.png")} />
+      <Image source={timerType.Image} />
 
       <View style={styles.actions}>
         <View style={styles.contex}>
@@ -17,7 +38,13 @@ export default function Index() {
             <Text style={styles.contexButtonText}>Pausa longa</Text>
           </Pressable>
         </View>
-        <Text style={styles.timer}>25:00</Text>
+        <Text style={styles.timer}>
+          {" "}
+          {new Date(timerType.initialValue * 1000).toLocaleTimeString("pt-BR", {
+            minute: "2-digit",
+            second: "2-digit",
+          })}
+        </Text>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Começar</Text>
         </Pressable>
