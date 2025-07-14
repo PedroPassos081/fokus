@@ -6,16 +6,19 @@ const pomodoro = [
     id: "focus",
     initialValue: 25,
     Image: require("../assets/images/foco.png"),
+    display: "foco",
   },
   {
     id: "short",
     initialValue: 5,
     Image: require("../assets/images/short.png"),
+    display: "pausa curta",
   },
   {
     id: "long",
     initialValue: 15,
     Image: require("../assets/images/long.png"),
+    display: "pausa longa",
   },
 ];
 
@@ -28,15 +31,15 @@ export default function Index() {
 
       <View style={styles.actions}>
         <View style={styles.contex}>
-          <Pressable style={styles.contexButtonActive}>
-            <Text style={styles.contexButtonText}>foco</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.contexButtonText}>Pausa curta</Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.contexButtonText}>Pausa longa</Text>
-          </Pressable>
+          {pomodoro.map((p) => (
+            <Pressable
+              key={p.id}
+              style={styles.id === p.id ? styles.contexButtonActive : null}
+              onPress={() => setTimerType(p)}
+            >
+              <Text style={styles.contexButtonText}>{p.display}</Text>
+            </Pressable>
+          ))}
         </View>
         <Text style={styles.timer}>
           {" "}
